@@ -40,6 +40,9 @@ username password is the name of database user created under security - database
 npm install --save mongodb
 this installs the mongodb driver
 
+MOngoDB docs: CRUD Operations:
+https://docs.mongodb.com/manual/crud/
+
 
  
 
