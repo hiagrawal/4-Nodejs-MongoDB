@@ -21,8 +21,22 @@ class Product {
       console.log(result);
     })
     .catch(err => console.log(err));
-
   }
+
+  //find is a method which returns all the records which might be quite huge hence mongodb does not directly returns all records
+  //instead gives either cursor or toArray to determine how we want all the records
+  //if it is huge, we can get it one by one by calling cursor
+  //if we are sure, records are less, we can call toArray to get all the records at once
+  static fetchAll(){
+    const db = getDb();
+    return db.collection('products').find().toArray()
+    .then(products => {
+      console.log(products);
+      return products;
+    })
+    .catch(err => console.log(err))
+  }
+
 }
 
 module.exports = Product;

@@ -43,6 +43,15 @@ this installs the mongodb driver
 MOngoDB docs: CRUD Operations:
 https://docs.mongodb.com/manual/crud/
 
+MongoDB Compass: 
+MongoDB Compass is a tool given by MongoDB which we can install and see the visual representation of our database
+
+To Download: https://www.mongodb.com/try/download/compass
+get it downloaded and installed
+
+Now donnect to the database by entering Connection string which can get from:
+cluster - connect - Connect using MongoDB compass - I ahev mongoDB compass - and then copy the connection string
+
 
  
 
