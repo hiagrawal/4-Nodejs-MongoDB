@@ -12,8 +12,3 @@ const mongoConnect = callback => {
 }
 
 module.exports = mongoConnect;
-
-//mongodb+srv://MongoDbUser:MongoDbUser@cluster0.kij6e.mongodb.net/PROJECT 0?retryWrites=true&w=majority
-//mongodb+srv://MongoDbUser:MongoDbUser@cluster0.kij6e.mongodb.net/cluster0?retryWrites=true&w=majority
-//mongodb+srv://MongoDbUser:MongoDbUser@cluster0.kij6e.mongodb.net/test?retryWrites=true&w=majority
-//mongodb+srv://MongoDbUser:MongoDbUser@cluster0.kij6e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority

@@ -1,0 +1,46 @@
+Download MongoDB
+
+- MondoDb can be downloaded as community, as Atlas or various other options
+
+- Download as Atlas which is Mongodb as a service which requires sign in : https://www.mongodb.com/try
+
+- Create a new database and choose 'Shared Cluster' which is free, and choose region Mumbai and leave all options as it is.
+This will create a cluster
+
+- Now go to 'Security' option in left side, and choose 'Database Access'
+Add new Database user with the password authentication, give username password, make sure if you give special characters in username pwd then will have to encode the same so can autogenerate secure pwd as well
+User: MongoDb-user pwd: MongoDb-user
+Uesr: MongoDbUser pwd: MongoDbUser 
+Links to refer for special characters:
+https://docs.atlas.mongodb.com/troubleshoot-connection/#special-characters-in-connection-string-password
+https://www.urlencoder.org/ : link to encode special characters
+
+- Now go to Network Access, under IP Access list, Add IP Address and in their - 'Add Current IP Address' or add manually
+This is the ip address from where it can access, do ipconfig /all in cmd and enter ip address shown in IPv4 Address. . . . . . . . . . . : 192.168.43.19(Preferred)
+But this might also not work as as it takes the public IPv4 address. Can get the same from : https://www.whatismyip.com/my-ip-information/
+And this public TPv4 address changes everyday, so check this while connecting nodejs server to mongodb
+
+or to check this, select 'Allow access from anywhere' and check if able to connect
+This should be the IP address where it is being accessed. when nodejs app running in local, then it is current ip address
+When hosted on server, then it should be server ip address
+
+To further debug this,
+https://www.mongodb.com/community/forums/t/cant-connect-to-mongodb-could-not-connect-to-any-servers-in-your-mongodb-atlas-cluster/9624/2
+https://www.whatismyip.com/
+https://www.whatismyip.com/my-ip-information/
+
+
+- Now go tback to database/cluster created, click on 'connect' and choose a connection method which is 'Connect your application'
+This will show a link to connect to this mongodb server: 
+mongodb+srv://<username>:<password>@cluster0.kij6e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+username password is the name of database user created under security - database user
+'myFirstDatabase' is the default database name which can be anything
+
+- Now Mongodb server is up and running. Now need to add Mongodb driver which is a package used to connect to mongo db
+npm install --save mongodb
+this installs the mongodb driver
+
+
+ 
+
+ 
