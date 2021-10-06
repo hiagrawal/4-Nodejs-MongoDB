@@ -1,3 +1,4 @@
+const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
@@ -24,8 +25,8 @@ class Product {
   }
 
   //find is a method which returns all the records which might be quite huge hence mongodb does not directly returns all records
-  //instead gives either cursor or toArray to determine how we want all the records
-  //if it is huge, we can get it one by one by calling cursor
+  //instead gives either next or toArray to determine how we want all the records
+  //if it is huge, we can get it one by one by calling next
   //if we are sure, records are less, we can call toArray to get all the records at once
   static fetchAll(){
     const db = getDb();
@@ -33,6 +34,20 @@ class Product {
     .then(products => {
       console.log(products);
       return products;
+    })
+    .catch(err => console.log(err))
+  }
+
+  //in mongodb, ids are saved in paramter '_id'
+  //Now if we check, it stored _id as a special ObjectId type 
+  //so we will have to pass prodId as well as ObjectId type to get it compared
+  //also, since we know only one record will be returned, we can get the same using next() which will return one record
+  static findById(prodId){
+    const db = getDb();
+    return db.collection('products').find({_id: new mongodb.ObjectId(prodId)}).next()
+    .then(product => {
+      console.log(product);
+      return product;
     })
     .catch(err => console.log(err))
   }
