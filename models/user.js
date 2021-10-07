@@ -90,6 +90,11 @@ class User {
     });
   }
 
+  getOrders(){
+    const db = getDb();
+    return db.collection('orders').find({'user._id' : new ObjectId(this._id)}).toArray();
+  }
+
   //Another alternative method findOne to use if we are sure that it will return only one value
   static findById(userId){
     const db = getDb();
