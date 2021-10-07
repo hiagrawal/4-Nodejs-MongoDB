@@ -63,6 +63,14 @@ class User {
     .catch(err => console.log(err));
   }
 
+  deleteItemFromCart(productId){
+    const updatedCartItems = this.cart.items.filter(item => {
+      return item.productId.toString() !== productId.toString();
+    });
+    const db = getDb();
+    return db.collection('users').updateOne({_id: new ObjectId(this._id)}, {$set: {cart: {items: updatedCartItems}}})
+  }
+
   //Another alternative method findOne to use if we are sure that it will return only one value
   static findById(userId){
     const db = getDb();
