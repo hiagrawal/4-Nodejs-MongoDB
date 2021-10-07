@@ -2,11 +2,12 @@ const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
-  constructor(title, price, description, imageUrl){
+  constructor(title, price, description, imageUrl, id){
     this.title = title;
     this.price = price;
     this.description = description;
     this.imageUrl = imageUrl;
+    this._id = id;
   }
 
   //in Mongodb, we have database then collections then documents
@@ -15,9 +16,26 @@ class Product {
   //insertOne is method which we can find in mongoDb docs: https://docs.mongodb.com/manual/crud/
   //it takes object so insertOne({name: 'A book', price: 10.00}) ..
   //but since we have all this in 'this', we can directly pass the same
+
+  //to update the product, first checking if the item already exists
+  //then updating using the updateOne method which takes two arguments
+  //one is the record that it has to update and second is value that needs to be updated with
+  //and value is passed as $set that is set the updated value passed
+  //and since we are passing 'this' directy hence this_id passed here should be ObjectId
   save(){
     const db = getDb();
-    return db.collection('products').insertOne(this)
+    let dbOp;
+    console.log("Inside save");
+    console.log(this._id);
+    console.log(new mongodb.ObjectId(this._id));
+    if(this._id){
+      console.log("inside update");
+      dbOp = db.collection('products').updateOne({_id: new mongodb.ObjectId(this._id)},{$set: this});
+    }
+    else{
+      dbOp = db.collection('products').insertOne(this);
+    }
+    return dbOp
     .then(result => {
       console.log(result);
     })
