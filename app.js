@@ -18,10 +18,15 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//created the user manually in db and fetching that user by id
 app.use((req, res, next) => {
   User.findById('615eab1fc7caee6b996ad1c4')
     .then(user => {
-      req.user = user;
+      //since we are saving user data, we only get user data but we want all the methods also so..
+      //req.user = user;
+
+      //so now we are calling the User cinstructor, so req.user will have access to all the User methods also defined in User model
+      req.user = new User(user.name, user.email, user.cart, user._id);
       next();
     })
     .catch(err => console.log(err));
