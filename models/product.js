@@ -7,7 +7,7 @@ class Product {
     this.price = price;
     this.description = description;
     this.imageUrl = imageUrl;
-    this._id = new mongodb.ObjectId(id);
+    this._id = id ? new mongodb.ObjectId(id) : null ;
   }
 
   //in Mongodb, we have database then collections then documents
