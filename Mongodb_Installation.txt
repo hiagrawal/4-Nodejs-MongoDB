@@ -52,6 +52,14 @@ get it downloaded and installed
 Now donnect to the database by entering Connection string which can get from:
 cluster - connect - Connect using MongoDB compass - I ahev mongoDB compass - and then copy the connection string
 
+Useful resource:
+
+MongoDB Official Docs: https://docs.mongodb.com/manual/core/security-encryption-at-rest/https://docs.mongodb.com/manual/
+
+SQL vs NoSQL: https://academind.com/learn/web-dev/sql-vs-nosql/
+
+Learn more about MongoDB: https://academind.com/learn/mongodb
+
 
  
 
