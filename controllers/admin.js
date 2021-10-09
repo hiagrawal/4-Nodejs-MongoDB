@@ -27,7 +27,15 @@ exports.postAddProduct = (req, res, next) => {
   //   });
 
     //when using MOngoose
-    const product = new Product({title:title, price: price, description: description, imageUrl : imageUrl});
+    //for userId, we can give req.user._id to pass just the id, 
+    //or we can give only req.user and mongoose will automatically take the id from the user and assign it to userId
+    const product = new Product({
+      title:title, 
+      price: price, 
+      description: description, 
+      imageUrl : imageUrl,
+      userId: req.user
+    });
     //Note we did not define a method 'save' in model. It is given ny mongoose 
     product.save()
     .then(result => {

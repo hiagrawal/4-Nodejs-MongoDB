@@ -104,6 +104,11 @@ const productSchema = new Schema({
   imageUrl : {
     type:String,
     required:true
+  },
+  userId: {
+    type:Schema.Types.ObjectId,
+    ref:'User', //ref is given by mongoose to define to which collection/model this field(here userId) is related to 
+    required:true
   }
 
 });
