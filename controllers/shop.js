@@ -35,16 +35,11 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  // Product.findAll({ where: { id: prodId } })
-  //   .then(products => {
-  //     res.render('shop/product-detail', {
-  //       product: products[0],
-  //       pageTitle: products[0].title,
-  //       path: '/products'
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
   
+  //findById is a method defined by us when using mongo
+  //Now it is the same method given by mongoose to find any product
+  //and we can just pass the prodId as string only, and mongoose will convert it into ObjectId as needed by mongodb
+  //so all our code remains the same even when using mongoose with defining any method
   Product.findById(prodId)
     .then(product => {
       res.render('shop/product-detail', {
