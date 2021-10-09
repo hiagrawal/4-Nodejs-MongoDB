@@ -3,3 +3,5 @@ Mongoose Docs : https://mongoosejs.com/docs/
 Mongoose Install: npm install mongoose --save
 
 We do not now need any mongo db util database file and can connect to mongodb directly using mongoose
+
+Schema Methods: https://mongoosejs.com/docs/guide.html#methods
