@@ -132,6 +132,29 @@ exports.getProducts = (req, res, next) => {
       });
     })
     .catch(err => console.log(err));
+
+    //other userful methods provided by mongoose
+    //we can give select to define what all paramters should be returned by passing the paramter name
+    //and what should not be returned by passing '- (minus)' and then the paramter name
+    //since id is returned automatically if not excluded explicitely 
+    //and since we have not passed imageUrl and description so it will not be returned in the result
+
+    //another is populate which can be used to populate all the paramters of a relational paramter
+    //by default just the userId will be returned but if we want enter user object matching that userId we can use populate
+    //and it will return name email and the entire user object
+    //if we want t populate fields bt not all and some specific we can give that as well like name
+    
+    // Product.find()
+    // .select('title price -.id')
+    // .populate('userId', 'name')
+    // .then(products => {
+    //   res.render('admin/products', {
+    //     prods: products,
+    //     pageTitle: 'Admin Products',
+    //     path: '/admin/products'
+    //   });
+    // })
+    // .catch(err => console.log(err));
 };
 
 exports.postDeleteProduct = (req, res, next) => {
