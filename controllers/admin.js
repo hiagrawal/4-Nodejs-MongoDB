@@ -13,8 +13,23 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(title, price, description, imageUrl, null, req.user._id);
-  product.save()
+
+  //when using mongodb
+  // const product = new Product(title, price, description, imageUrl, null, req.user._id);
+  // product.save()
+  //   .then(result => {
+  //     console.log(result);
+  //     console.log('Created Product');
+  //     res.redirect('/admin/products');
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+
+    //when using MOngoose
+    const product = new Product({title:title, price: price, description: description, imageUrl : imageUrl});
+    //Note we did not define a method 'save' in model. It is given ny mongoose 
+    product.save()
     .then(result => {
       console.log(result);
       console.log('Created Product');
@@ -23,6 +38,7 @@ exports.postAddProduct = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+
 };
 
 exports.getEditProduct = (req, res, next) => {

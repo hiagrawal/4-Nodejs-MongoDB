@@ -107,3 +107,7 @@ const productSchema = new Schema({
   }
 
 });
+
+//model is used to give what model name should be in db and then what is the schema of that model
+//mongoose takes model name, convert it into lower case, make it plural so it is now 'products' which is the name of the collection mongoose gives
+module.exports = mongoose.model('Product', productSchema);
