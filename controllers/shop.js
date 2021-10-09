@@ -1,7 +1,25 @@
 const Product = require('../models/product');
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+
+  //when using mongo
+  // Product.fetchAll()
+  //   .then(products => {
+  //     res.render('shop/product-list', {
+  //       prods: products,
+  //       pageTitle: 'All Products',
+  //       path: '/products'
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+
+    //when using mongoose
+    //mongoose gives us find method which can be used to get all products
+    //can pass any condition to filter out the data
+    //also, it gives us back a cursor to iterate over the results one by one uisng next
+    Product.find()
     .then(products => {
       res.render('shop/product-list', {
         prods: products,
@@ -12,6 +30,7 @@ exports.getProducts = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+
 };
 
 exports.getProduct = (req, res, next) => {
@@ -38,7 +57,22 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll()
+
+  //when using mongo
+  // Product.fetchAll()
+  //   .then(products => {
+  //     res.render('shop/index', {
+  //       prods: products,
+  //       pageTitle: 'Shop',
+  //       path: '/'
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+
+    //when using mongoose
+    Product.find()
     .then(products => {
       res.render('shop/index', {
         prods: products,
