@@ -68,8 +68,29 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
-  const product = new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, prodId);
-  product.save()
+
+  //when using mongo
+  // const product = new Product(updatedTitle, updatedPrice, updatedDesc, updatedImageUrl, prodId);
+  // product.save()
+  //   .then(result => {
+  //     console.log(result);
+  //     console.log('Updated Product');
+  //     res.redirect('/admin/products');
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+
+  //when using mongoose
+  //when we do findById, it not only gives us product object but also all mongoose methods on that object
+  //so we can directly call save method on the returned object
+  Product.findById(prodId).then(product => {
+    product.title = updatedTitle;
+    product.price = updatedPrice;
+    product.description = updatedDesc;
+    product.imageUrl = updatedImageUrl;
+    return product.save()
+  })
     .then(result => {
       console.log(result);
       console.log('Updated Product');
@@ -81,7 +102,20 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+
+  //when using mongo
+  // Product.fetchAll()
+  //   .then(products => {
+  //     res.render('admin/products', {
+  //       prods: products,
+  //       pageTitle: 'Admin Products',
+  //       path: '/admin/products'
+  //     });
+  //   })
+  //   .catch(err => console.log(err));
+
+  //when using mongoose
+  Product.find()
     .then(products => {
       res.render('admin/products', {
         prods: products,
